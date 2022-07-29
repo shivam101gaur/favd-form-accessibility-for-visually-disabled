@@ -1,0 +1,27 @@
+<form>
+    <div class="bg-white p-3 rounded-lg relative">
+
+        <div class=" bg-slate-300 p-4 rounded-xl">
+            <p class="font-bold ">Form Elements </p>
+            <div *ngFor="let ele of opFormArray;let i=index;"
+                class="grid grid-cols-1 gap-4 lg:grid-cols-7 md:grid-cols-7">
+                <div class="flex w-1 justify-start items-center">
+                    #{{i+1}}.&nbsp;<button (click)="removeElement(i)" class="bg-red-500 text-white hover:bg-white hover:text-red-500 h-fit w-fit p-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-xs">Remove</button>
+                </div>
+
+                <div *ngFor="let key of formElementKeys">
+                    <label [for]="key"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{key|titlecase}}</label>
+                    <input (change)="(key=='id')?validateId():true" [id]="key" type="text" [(ngModel)]="ele[key]" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+            </div>
+            <button (click)="generateForm()" type="button" class="text-white w-full mt-3 bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Generate Form</button>
+
+        </div>
+        <button type="button"  (click)="addElement();" style="position: absolute;top:0;right:0"
+            class="text-white   w-fit absolute top-0 right-0 mx-3 my-1 bg-blue-700 md:col-span-2  hover:bg-teal -800 focus:ring-4 focus:outline-none focus:ring-green-500 dark:focus:ring-green-800 font-medium rounded-lg text-xs px-5 py-2.5 text-center mr-2 mb-2">
+            + Add Form Element</button>
+    </div>
+</form>

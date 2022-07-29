@@ -1,0 +1,34 @@
+
+<form>
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 md:grid-cols-2 bg-white p-4 rounded-xl">
+        <div *ngFor="let ele of formArray">
+            <label [for]="ele.id"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ele.label}}</label>
+            <input autocomplete="off" (input)="cancelAssistant()"  (focus)="fillForm(ele)"   [id]="ele.id" [disabled]="!ele.id" [type]="ele.type||'text'" [(ngModel)]="ele.value" [ngModelOptions]="{standalone: true}"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [placeholder]="ele.placeholder||ele.speech" required>
+        </div>
+        <button type="submit" (click)="save()"
+            class="text-white bg-gradient-to-r md:col-span-2 from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2">Save</button>
+    </div>
+</form>
+
+
+<div *ngIf="voiceRecognition.listening" class="flex flex-col justify-center items-center absolute bottom-0 left-0 right-0 m-auto">
+    <div class="flex justify-center font-bold text-red-600">
+        Listening... 
+    </div>
+    <div class="flex bg-white rounded-2xl p-3 justify-center font-mono font-medium text-green-700  text-lg">
+       {{voiceRecognition.tempWords}} ..
+    </div>
+    <div class="blobs-container w-fit">
+        <div class="blob white"></div>
+        <div class="blob red"></div>
+        <div class="blob orange"></div>
+        <div class="blob yellow"></div>
+        <div class="blob blue"></div>
+        <div class="blob green"></div>
+        <div class="blob purple"></div>
+        <div class="blob"></div>
+    </div>
+</div>
