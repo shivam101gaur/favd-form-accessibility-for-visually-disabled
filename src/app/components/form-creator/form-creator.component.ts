@@ -16,10 +16,7 @@ export class FormCreatorComponent implements OnInit {
   synth = window.speechSynthesis;
 
   SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-  ;
-  SpeechGrammarList = (window as any).SpeechGrammarList || (window as any).SpeechGrammarList;
-  SpeechRecognitionEvent = (window as any).SpeechRecognitionEvent || (window as any).SpeechRecognitionEvent
-
+  
   constructor(public voiceRecognition: VoiceRecognitionService, public cdrf: ChangeDetectorRef) {
     this.voiceRecognition.init();
   }
